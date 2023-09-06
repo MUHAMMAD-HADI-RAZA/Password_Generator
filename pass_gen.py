@@ -2,7 +2,7 @@ import tkinter as tk
 import random
 import string
 
-class PassWord_Genertaor:
+class PassWord_Generator:
     def __init__(self):
         self.lower = string.ascii_lowercase
         self.upper = string.ascii_uppercase
@@ -26,7 +26,7 @@ class App:
         self.root = root
         self.root.title("PASSWORD GENERATOR APP")
         self.Gui_Window()
-        self.Generator = PassWord_Genertaor()
+        self.Generator = PassWord_Generator()
 
     def Gui_Window(self):
         self.Widgets()
@@ -50,13 +50,41 @@ class App:
         self.Box.pack(pady=10, padx=10, fill="both", expand=True)
 
     def Length_Entry(self):
-        self.Len_Label = tk.Label(self.root, text="PASSWORD LENGTH:", font=("Times New Roman", 14, "bold underline"))
+        self.Len_Label = tk.Label(self.root, text="PASSWORD LENGTH:", font=("Times New Roman", 14, "bold underline"), fg="green")
         self.Len_Entry = tk.Entry(self.root, font=("Times New Roman", 12))
 
     def Complexity_Entry(self):
-        self.Comp_Label = tk.Label(self.root, text="COMPLEXITY:", font=("Times New Roman", 14))
+        self.Comp_Label = tk.Label(self.root, text="COMPLEXITY:", font=("Times New Roman", 14), fg="red")
         self.Comp_Var = tk.StringVar()
         self.Comp_Var.set("Medium")
-        self.Low_Comp = tk.Radiobutton(self.root, text="LOW", variable=self.Comp_Var, value="Low", font=("Times New Roman", 12))
-        self.Low_Comp = tk.Radiobutton(self.root, text="MEDIUM", variable=self.Comp_Var, value="Medium", font=("Times New Roman", 12))
-        self.Low_Comp = tk.Radiobutton(self.root, text="HIGH", variable=self.Comp_Var, value="High", font=("Times New Roman", 12))
+        self.Low_Comp = tk.Radiobutton(self.root, text="LOW", variable=self.Comp_Var, value="Low", font=("Times New Roman", 12), fg="green")
+        self.Med_Comp = tk.Radiobutton(self.root, text="MEDIUM", variable=self.Comp_Var, value="Medium", font=("Times New Roman", 12), fg="blue")
+        self.High_Comp = tk.Radiobutton(self.root, text="HIGH", variable=self.Comp_Var, value="High", font=("Times New Roman", 12), fg="red")
+
+    def Generate_Button(self):
+        self.Button = tk.Button(self.root, text="GENERATE PASSWORD", command=self.Pass_Generate, font=("Times New Roman", 14, "bold"), bg="lightblue2", fg="blue")
+        
+    def Pass_Box(self):
+        self.Box = tk.Text(self.root, height=1, wrap=tk.WORD, font=("Times New Roman", 14), fg="brown")
+        self.Box.config(state="normal")
+
+    def Pass_Generate(self):
+        try:
+            L = int(self.Len_Entry.get())
+            Comp = self.Comp_Var.get()
+            Pass = self.Generator.Generate_Pass(L, Comp)
+
+            self.Box.config(state="normal")
+            self.Box.delete("1.0", "end")
+            self.Box.insert("1.0", "GENERATED PASSWORD IS: "+ Pass)
+            self.Box.config(state="normal")
+
+        except ValueError as e:
+            self.Box.config(state="normal")
+            self.Box.delete("1.0", "end")
+            self.Box.insert("1.0", str(e))
+            self.Box.config(state="normal")
+
+root = tk.Tk()
+APP = App(root)
+root.mainloop()
