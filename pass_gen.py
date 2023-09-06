@@ -1,1 +1,1 @@
-print("PASSWORD GENERATOR")
+import random
