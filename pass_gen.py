@@ -20,7 +20,7 @@ class PassWord_Generator:
             char += self.upper + self.Special_Char
         Pass = "".join(random.choice(char) for j in range(l))
         return Pass
-    
+#create Gui for code 
 class App:
     def __init__(self, root):
         self.root = root
