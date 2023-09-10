@@ -38,6 +38,7 @@ class App:
         self.Generate_Button()
         self.Pass_Box()
 
+#layout for GUI
     def Layout(self):
         self.root.geometry("400x360")
         self.Len_Label.pack(pady=10)
