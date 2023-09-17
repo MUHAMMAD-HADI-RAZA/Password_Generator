@@ -69,7 +69,7 @@ class App:
         self.Box = tk.Text(self.root, height=1, wrap=tk.WORD, font=("Times New Roman", 14), fg="brown")
         self.Box.config(state="normal")
 
-#generate password
+#Generate password
     def Pass_Generate(self):
         try:
             L = int(self.Len_Entry.get())
