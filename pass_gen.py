@@ -55,7 +55,7 @@ class App:
         self.Len_Entry = tk.Entry(self.root, font=("Times New Roman", 12))
 
     def Complexity_Entry(self):
-        self.Comp_Label = tk.Label(self.root, text="COMPLEXITY:", font=("Times New Roman", 14), fg="red")
+        self.Comp_Label = tk.Label(self.root, text="COMPLEXITY:", font=("Times New Roman", 14, "bold underline"), fg="red")
         self.Comp_Var = tk.StringVar()
         self.Comp_Var.set("Medium")
         self.Low_Comp = tk.Radiobutton(self.root, text="LOW", variable=self.Comp_Var, value="Low", font=("Times New Roman", 12), fg="green")
